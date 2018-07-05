@@ -15,9 +15,9 @@ final class ContextualMiddlewareRunnerTest extends TestCase
     {
         $cmr = new ContextualMiddlewareRunner(function (ServerRequestInterface $request) {
             return false;
-        }, function () {
+        }, [function () {
             $this->fail('The first middleware should never be reached');
-        });
+        }]);
 
         /** @var ResponseInterface $response */
         $response = $this->await($cmr($this->prophesize(ServerRequestInterface::class)->reveal(), function () {
@@ -31,9 +31,9 @@ final class ContextualMiddlewareRunnerTest extends TestCase
     {
         $cmr = new ContextualMiddlewareRunner(function (ServerRequestInterface $request) {
             return false;
-        }, function () {
+        }, [function () {
             $this->fail('The first middleware should never be reached');
-        });
+        }]);
 
         /** @var ResponseInterface $response */
         $response = $this->await($cmr($this->prophesize(ServerRequestInterface::class)->reveal(), function () {
@@ -47,11 +47,11 @@ final class ContextualMiddlewareRunnerTest extends TestCase
     {
         $cmr = new ContextualMiddlewareRunner(function (ServerRequestInterface $request) {
             return true;
-        }, function (ServerRequestInterface $request, $next) {
+        }, [function (ServerRequestInterface $request, $next) {
             /** @var ResponseInterface $response */
             $response = $next($request);
             return $response->withStatus(123);
-        });
+        }]);
 
         /** @var ResponseInterface $response */
         $response = $this->await($cmr($this->prophesize(ServerRequestInterface::class)->reveal(), function () {
