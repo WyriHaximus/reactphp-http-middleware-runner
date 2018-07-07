@@ -24,7 +24,7 @@ final class ContextualMiddlewareRunner
     private $failMiddleware;
 
     /**
-     * @param callable $contextChecker
+     * @param callable   $contextChecker
      * @param callable[] $passMiddleware
      * @param callable[] $failMiddleware
      */

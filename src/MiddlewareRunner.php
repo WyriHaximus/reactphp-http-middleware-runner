@@ -41,6 +41,7 @@ final class MiddlewareRunner
         // final request handler will be invoked without a next handler
         if (!isset($this->middleware[$position + 1])) {
             $handler = $this->middleware[$position];
+
             return $handler($request, $last);
         }
 
@@ -50,6 +51,7 @@ final class MiddlewareRunner
 
         // invoke middleware request handler with next handler
         $handler = $this->middleware[$position];
+
         return $handler($request, $next);
     }
 }

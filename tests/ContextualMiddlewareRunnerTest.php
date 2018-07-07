@@ -6,8 +6,8 @@ use ApiClients\Tools\TestUtilities\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use React\Http\Response;
-use function React\Promise\resolve;
 use WyriHaximus\React\Http\Middleware\ContextualMiddlewareRunner;
+use function React\Promise\resolve;
 
 final class ContextualMiddlewareRunnerTest extends TestCase
 {
@@ -50,6 +50,7 @@ final class ContextualMiddlewareRunnerTest extends TestCase
         }, [function (ServerRequestInterface $request, $next) {
             /** @var ResponseInterface $response */
             $response = $next($request);
+
             return $response->withStatus(123);
         }]);
 
