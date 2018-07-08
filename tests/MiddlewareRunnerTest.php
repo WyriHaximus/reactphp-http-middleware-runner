@@ -24,4 +24,21 @@ final class MiddlewareRunnerTest extends TestCase
         self::assertInstanceOf(ResponseInterface::class, $response);
         self::assertSame(999, $response->getStatusCode());
     }
+
+    public function testShortCircuit()
+    {
+        $runner = new MiddlewareRunner(function (ServerRequestInterface $request) {
+            return new Response(666);
+        });
+        /** @var ResponseInterface $response */
+        $response = $this->await($runner(
+            $this->prophesize(ServerRequestInterface::class)->reveal(),
+            function (ServerRequestInterface $request) {
+                return new Response(999);
+            }
+        ));
+
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertSame(666, $response->getStatusCode());
+    }
 }
