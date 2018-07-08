@@ -1,10 +1,10 @@
-# Run a set of react/http middleware when a context checker passes
+# Run a set of react/http middleware runner
 
-[![Build Status](https://travis-ci.org/WyriHaximus/reactphp-http-contextual-middleware-runner.svg?branch=master)](https://travis-ci.org/WyriHaximus/reactphp-http-contextual-middleware-runner)
-[![Latest Stable Version](https://poser.pugx.org/WyriHaximus/react-http-contextual-middleware-runner/v/stable.png)](https://packagist.org/packages/WyriHaximus/react-http-contextual-middleware-runner)
-[![Total Downloads](https://poser.pugx.org/WyriHaximus/react-http-contextual-middleware-runner/downloads.png)](https://packagist.org/packages/WyriHaximus/react-http-contextual-middleware-runner)
-[![Code Coverage](https://scrutinizer-ci.com/g/WyriHaximus/reactphp-http-contextual-middleware-runner/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/WyriHaximus/reactphp-http-contextual-middleware-runner/?branch=master)
-[![License](https://poser.pugx.org/WyriHaximus/react-http-contextual-middleware-runner/license.png)](https://packagist.org/packages/WyriHaximus/react-http-contextual-middleware-runner)
+[![Build Status](https://travis-ci.org/WyriHaximus/reactphp-http-middleware-runner.svg?branch=master)](https://travis-ci.org/WyriHaximus/reactphp-http-middleware-runner)
+[![Latest Stable Version](https://poser.pugx.org/WyriHaximus/react-http-middleware-runner/v/stable.png)](https://packagist.org/packages/WyriHaximus/react-http-middleware-runner)
+[![Total Downloads](https://poser.pugx.org/WyriHaximus/react-http-middleware-runner/downloads.png)](https://packagist.org/packages/WyriHaximus/react-http-middleware-runner)
+[![Code Coverage](https://scrutinizer-ci.com/g/WyriHaximus/reactphp-http-middleware-runner/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/WyriHaximus/reactphp-http-middleware-runner/?branch=master)
+[![License](https://poser.pugx.org/WyriHaximus/react-http-middleware-runner/license.png)](https://packagist.org/packages/WyriHaximus/react-http-middleware-runner)
 [![PHP 7 ready](http://php7ready.timesplinter.ch/WyriHaximus/reactphp-http-middleware-clear-body/badge.svg)](https://travis-ci.org/WyriHaximus/reactphp-http-middleware-clear-body)
 
 # Install
@@ -12,32 +12,7 @@
 To install via [Composer](http://getcomposer.org/), use the command below, it will automatically detect the latest version and bind it with `^`.
 
 ```
-composer require wyrihaximus/react-http-contextual-middleware-runner
-```
-
-This middleware removes the raw body from the request. Best used after the request body has been parsed.
-
-# Usage
-
-In the following example the [`CORS`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) to allow everything in 
-the `/css/` and `/js/` by overwriting what comes out of [`christoph-kluge/reactphp-http-cors-middleware`](https://github.com/christoph-kluge/reactphp-http-cors-middleware).
-
-**Note: This is an actual use case from [`WyriMaps.net`](https://www.wyrimaps.net) where there is an embeddable map 
-`JS` files served from that domain.**
-
-```php
-$server = new Server([
-    /** Other Middleware */
-    new ContextualMiddlewareRunner(function (ServerRequestInterface $request) {
-        return substr($request->getUri()->getPath(), 5) === '/css/' || substr($request->getUri()->getPath(), 4) === '/js/';
-    }, function (ServerRequestInterface $request, $next) {
-        /** @var ResponseInterface $response */
-        $response = $next($request);
-        return $response->withHeader('Access-Control-Allow-Origin','*');
-    }
-    new CorsMiddleware(), // Middleware from christoph-kluge/reactphp-http-cors-middleware, not shipping with this package!!!
-    /** Other Middleware */
-]);
+composer require wyrihaximus/react-http-middleware-runner
 ```
 
 # License
