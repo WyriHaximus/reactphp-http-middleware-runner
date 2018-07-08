@@ -1,6 +1,6 @@
 {
-    "name": "wyrihaximus/react-http-contextual-middleware-runner",
-    "description": "Run a set of react/http middleware when a context checker passes",
+    "name": "wyrihaximus/react-http-middleware-runner",
+    "description": "Middleware runner for react/http",
     "license": "MIT",
     "authors": [
         {
