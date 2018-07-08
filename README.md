@@ -15,6 +15,17 @@ To install via [Composer](http://getcomposer.org/), use the command below, it wi
 composer require wyrihaximus/react-http-middleware-runner
 ```
 
+# Usage
+
+Hand `MiddlewareRunner` an array of [`react/http` middleware](https://reactphp.org/http/#middleware) on creation, 
+and a request and the next middleware on calling and it will work through all the middleware for you.
+
+```php
+$runner = new MiddlewareRunner(...$passMiddleware);
+$runner($request, $next);
+```
+
+
 # License
 
 The MIT License (MIT)
