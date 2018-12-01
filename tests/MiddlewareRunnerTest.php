@@ -8,9 +8,12 @@ use Psr\Http\Message\ServerRequestInterface;
 use React\Http\Response;
 use WyriHaximus\React\Http\Middleware\MiddlewareRunner;
 
+/**
+ * @internal
+ */
 final class MiddlewareRunnerTest extends TestCase
 {
-    public function testEmpty()
+    public function testEmpty(): void
     {
         $runner = new MiddlewareRunner();
         /** @var ResponseInterface $response */
@@ -25,7 +28,7 @@ final class MiddlewareRunnerTest extends TestCase
         self::assertSame(999, $response->getStatusCode());
     }
 
-    public function testShortCircuit()
+    public function testShortCircuit(): void
     {
         $runner = new MiddlewareRunner(function (ServerRequestInterface $request) {
             return new Response(666);
@@ -42,10 +45,10 @@ final class MiddlewareRunnerTest extends TestCase
         self::assertSame(666, $response->getStatusCode());
     }
 
-    public function testPassAlong()
+    public function testPassAlong(): void
     {
         $middleware = [];
-        foreach (range(0, 25) as $i) {
+        foreach (\range(0, 25) as $i) {
             $middleware[] = function (ServerRequestInterface $request, callable $next) {
                 return $next($request);
             };
