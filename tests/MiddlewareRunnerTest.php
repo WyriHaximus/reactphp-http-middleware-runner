@@ -5,7 +5,7 @@ namespace WyriHaximus\React\Tests\Http\Middleware;
 use ApiClients\Tools\TestUtilities\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use React\Http\Response;
+use React\Http\Message\Response;
 use WyriHaximus\React\Http\Middleware\MiddlewareRunner;
 
 /**
